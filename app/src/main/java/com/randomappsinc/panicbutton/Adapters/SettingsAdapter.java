@@ -1,4 +1,4 @@
-package com.randomappsinc.panicbutton;
+package com.randomappsinc.panicbutton.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.joanzapata.iconify.widget.IconTextView;
+import com.randomappsinc.panicbutton.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;

@@ -29,7 +29,6 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -56,7 +55,8 @@
                 android:layout_height="40dp"
                 android:gravity="center"
                 android:text="@string/clear_icon"
-                android:textSize="22dp"/>
+                android:textSize="22dp"
+                android:textColor="@color/app_red"/>
         </FrameLayout>
 
         <ListView

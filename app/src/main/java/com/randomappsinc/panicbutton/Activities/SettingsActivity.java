@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
+import com.randomappsinc.panicbutton.Adapters.SettingsAdapter;
 import com.randomappsinc.panicbutton.R;
-import com.randomappsinc.panicbutton.SettingsAdapter;
 import com.randomappsinc.panicbutton.Utils.UIUtils;
 
 import butterknife.Bind;

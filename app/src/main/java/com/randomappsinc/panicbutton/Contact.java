@@ -2,6 +2,8 @@ package com.randomappsinc.panicbutton;
 
 import android.support.annotation.NonNull;
 
+import com.randomappsinc.panicbutton.Utils.ContactsUtils;
+
 /**
  * Created by alexanderchiou on 2/15/16.
  */
@@ -14,14 +16,16 @@ public class Contact implements Comparable<Contact> {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public String getPhoneNumber()
-    {
+    public String getRawPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getFormattedPhoneNumber() {
+        return ContactsUtils.humanizePhoneNumber(phoneNumber);
     }
 
     public int compareTo(@NonNull Contact other) {

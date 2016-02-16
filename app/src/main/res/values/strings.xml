@@ -6,6 +6,7 @@
     <string name="search">Search</string>
     <string name="clear_icon">{fa-remove}</string>
 
+    <string name="show_instructions">Show instructions</string>
     <string name="instructions">Instructions</string>
     <string name="choose_contacts_instructions">
         In order for this app to work, you need to choose one or more emergency contacts.
