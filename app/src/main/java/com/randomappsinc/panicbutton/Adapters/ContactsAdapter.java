@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.randomappsinc.panicbutton.Contact;
 import com.randomappsinc.panicbutton.R;
-import com.randomappsinc.panicbutton.Utils.ContactServer;
+import com.randomappsinc.panicbutton.Utils.Contacts.ContactServer;
 
 import java.util.List;
 

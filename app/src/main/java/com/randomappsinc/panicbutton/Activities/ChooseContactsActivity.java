@@ -20,7 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.randomappsinc.panicbutton.Adapters.ContactsAdapter;
 import com.randomappsinc.panicbutton.R;
-import com.randomappsinc.panicbutton.Utils.ContactServer;
+import com.randomappsinc.panicbutton.Utils.Contacts.ContactServer;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.randomappsinc.panicbutton.Utils.UIUtils;
 

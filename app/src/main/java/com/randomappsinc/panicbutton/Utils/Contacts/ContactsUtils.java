@@ -1,4 +1,4 @@
-package com.randomappsinc.panicbutton.Utils;
+package com.randomappsinc.panicbutton.Utils.Contacts;
 
 import android.content.ContentResolver;
 import android.database.Cursor;

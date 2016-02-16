@@ -1,6 +1,7 @@
-package com.randomappsinc.panicbutton.Utils;
+package com.randomappsinc.panicbutton.Utils.Contacts;
 
 import com.randomappsinc.panicbutton.Contact;
+import com.randomappsinc.panicbutton.Utils.MyApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,9 @@ public class ContactServer {
     private ContactServer() {}
 
     public void initialize() {
-        contacts = ContactsUtils.getPhoneFriends(MyApplication.getAppContext().getContentResolver());
+        if (contacts == null) {
+            contacts = ContactsUtils.getPhoneFriends(MyApplication.getAppContext().getContentResolver());
+        }
     }
 
     public List<Contact> getMatches(String prefix) {
