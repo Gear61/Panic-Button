@@ -3,8 +3,8 @@ package com.randomappsinc.panicbutton.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.randomappsinc.panicbutton.R;
+import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 
 public class MainActivity extends SlidingActivity {
     @Override
