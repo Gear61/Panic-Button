@@ -1,7 +1,23 @@
 <resources>
     <string name="app_name">Panic Button</string>
+    <string name="settings">Settings</string>
 
     <string name="choose_contacts">Choose Contacts</string>
     <string name="search">Search</string>
     <string name="clear_icon">{fa-remove}</string>
+
+    <string name="instructions">Instructions</string>
+    <string name="choose_contacts_instructions">
+        In order for this app to work, you need to choose one or more emergency contacts.
+        When you activate the panic button, the app will text these contacts with a help message and your current location.
+        You can review these instructions at any time by clicking the info icon in the toolbar above.
+    </string>
+    <string name="read_contacts_explanation">
+        You need to give us access to your phone book,
+        so you can choose emergency contacts.
+    </string>
+    <string name="send_sms_explanation">
+        In order for this app to work,
+        you need to allow us to send SMS messages on your behalf.
+    </string>
 </resources>

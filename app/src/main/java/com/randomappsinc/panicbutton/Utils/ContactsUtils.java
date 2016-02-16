@@ -4,7 +4,7 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 
-import com.randomappsinc.panicbutton.Friend;
+import com.randomappsinc.panicbutton.Contact;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -41,11 +41,11 @@ public class ContactsUtils {
     }
 
     // Gets data to be used in ContactsAC adapters in emergency cases
-    public static List<Friend> getPhoneFriends(ContentResolver resolver) {
-        List<Friend> phoneFriends = new ArrayList<>();
+    public static List<Contact> getPhoneFriends(ContentResolver resolver) {
+        List<Contact> phoneFriends = new ArrayList<>();
         Map<String, String> phoneFriendsMap = getPhoneFriendsMap(resolver);
         for (String phoneNumber : phoneFriendsMap.keySet()) {
-            phoneFriends.add(new Friend(phoneFriendsMap.get(phoneNumber), phoneNumber));
+            phoneFriends.add(new Contact(phoneFriendsMap.get(phoneNumber), phoneNumber));
         }
         Collections.sort(phoneFriends);
         return phoneFriends;

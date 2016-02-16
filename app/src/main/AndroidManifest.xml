@@ -30,5 +30,10 @@
             android:configChanges="orientation|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden">
         </activity>
+        <activity
+            android:label="@string/settings"
+            android:name=".Activities.SettingsActivity"
+            android:configChanges="orientation|screenSize">
+        </activity>
     </application>
 </manifest>
