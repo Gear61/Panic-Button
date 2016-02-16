@@ -1,4 +1,4 @@
-package com.randomappsinc.panicbutton;
+package com.randomappsinc.panicbutton.Utils;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+
+import com.randomappsinc.panicbutton.R;
 
 /**
  * Created by alexanderchiou on 2/15/16.

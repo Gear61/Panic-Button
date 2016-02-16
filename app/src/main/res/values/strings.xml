@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Panic Button</string>
+
+    <string name="choose_contacts">Choose Contacts</string>
+    <string name="search">Search</string>
+    <string name="clear_icon">{fa-remove}</string>
 </resources>

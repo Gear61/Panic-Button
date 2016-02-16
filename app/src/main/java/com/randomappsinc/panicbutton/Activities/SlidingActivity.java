@@ -1,8 +1,10 @@
-package com.randomappsinc.panicbutton;
+package com.randomappsinc.panicbutton.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+
+import com.randomappsinc.panicbutton.R;
 
 /**
  * Created by alexanderchiou on 2/15/16.

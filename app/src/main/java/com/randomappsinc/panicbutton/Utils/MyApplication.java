@@ -1,4 +1,4 @@
-package com.randomappsinc.panicbutton;
+package com.randomappsinc.panicbutton.Utils;
 
 import android.app.Application;
 import android.content.Context;
