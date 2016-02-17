@@ -32,7 +32,7 @@ public class ContactsUtils {
         else {
             String areaCode = " (" + phoneNumber.substring(0, 3) + ") ";
             String numberPart1 = phoneNumber.substring(3, 6) + "-";
-            String numberPart2 = phoneNumber.substring(6, 9);
+            String numberPart2 = phoneNumber.substring(6, 10);
             return areaCode + numberPart1 + numberPart2;
         }
     }

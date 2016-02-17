@@ -10,11 +10,16 @@ import android.widget.TextView;
 import com.randomappsinc.panicbutton.Contact;
 import com.randomappsinc.panicbutton.R;
 import com.randomappsinc.panicbutton.Utils.Contacts.ContactServer;
+import com.rey.material.widget.CheckBox;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
+import butterknife.OnClick;
 
 /**
  * Created by alexanderchiou on 2/15/16.
@@ -22,15 +27,21 @@ import butterknife.ButterKnife;
 public class ContactsAdapter extends BaseAdapter {
     private Context context;
     private List<Contact> contacts;
+    private Set<String> chosenPhoneNumbers;
 
     public ContactsAdapter(Context context) {
         this.context = context;
         this.contacts = ContactServer.getInstance().getMatches("");
+        this.chosenPhoneNumbers = new HashSet<>();
     }
 
     public void updateWithPrefix(String prefix) {
         this.contacts = ContactServer.getInstance().getMatches(prefix);
         notifyDataSetChanged();
+    }
+
+    public Set<String> getChosenPhoneNumbers() {
+        return chosenPhoneNumbers;
     }
 
     public int getCount() {
@@ -45,28 +56,52 @@ public class ContactsAdapter extends BaseAdapter {
         return position;
     }
 
-    public class FriendViewHolder {
+    public class ContactViewHolder {
         @Bind(R.id.contact_name) TextView name;
         @Bind(R.id.contact_phone_number) TextView phoneNumber;
+        @Bind(R.id.contact_selected) CheckBox contactSelected;
 
-        public FriendViewHolder(View view) {
+        private Contact contact;
+
+        public ContactViewHolder(View view) {
             ButterKnife.bind(this, view);
+        }
+
+        public void loadContactInfo(Contact contact) {
+            this.contact = contact;
+            name.setText(contact.getName());
+            phoneNumber.setText(contact.getFormattedPhoneNumber());
+            contactSelected.setCheckedImmediately(chosenPhoneNumbers.contains(contact.getRawPhoneNumber()));
+        }
+
+        @OnCheckedChanged(R.id.contact_selected)
+        public void contactSelected(boolean isSelected) {
+            if (isSelected) {
+                chosenPhoneNumbers.add(contact.getRawPhoneNumber());
+            }
+            else {
+                chosenPhoneNumbers.remove(contact.getRawPhoneNumber());
+            }
+        }
+
+        @OnClick(R.id.parent)
+        public void onParentClicked() {
+            contactSelected.setChecked(!contactSelected.isChecked());
         }
     }
 
     public View getView(int position, View view, ViewGroup parent) {
-        FriendViewHolder holder;
+        ContactViewHolder holder;
         if (view == null) {
             LayoutInflater vi = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = vi.inflate(R.layout.contact_cell, parent, false);
-            holder = new FriendViewHolder(view);
+            holder = new ContactViewHolder(view);
             view.setTag(holder);
         }
         else {
-            holder = (FriendViewHolder) view.getTag();
+            holder = (ContactViewHolder) view.getTag();
         }
-        holder.name.setText(getItem(position).getName());
-        holder.phoneNumber.setText(getItem(position).getFormattedPhoneNumber());
+        holder.loadContactInfo(getItem(position));
         return view;
     }
 }
