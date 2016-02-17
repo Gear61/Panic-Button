@@ -19,25 +19,28 @@ public class ContactsUtils {
     // Given a "sanitized" phone # (only digits with country code), turn it back to human-readable format
     // Example: +1 (510) 449-4353
     public static String humanizePhoneNumber(String phoneNumber) {
-        if (phoneNumber.length() != 11 || (!phoneNumber.matches("[0-9]+"))) {
+        if (phoneNumber.length() < 10 || (!phoneNumber.matches("[0-9]+")) || phoneNumber.length() > 11) {
             return phoneNumber;
         }
-        String countryCode = "+" + phoneNumber.charAt(0);
-        String areaCode = " (" + phoneNumber.substring(1, 4) + ") ";
-        String numberPart1 = phoneNumber.substring(4, 7) + "-";
-        String numberPart2 = phoneNumber.substring(7, 11);
-        return countryCode + areaCode + numberPart1 + numberPart2;
+        if (phoneNumber.length() == 11) {
+            String countryCode = "+" + phoneNumber.charAt(0);
+            String areaCode = " (" + phoneNumber.substring(1, 4) + ") ";
+            String numberPart1 = phoneNumber.substring(4, 7) + "-";
+            String numberPart2 = phoneNumber.substring(7, 11);
+            return countryCode + areaCode + numberPart1 + numberPart2;
+        }
+        else {
+            String areaCode = " (" + phoneNumber.substring(0, 3) + ") ";
+            String numberPart1 = phoneNumber.substring(3, 6) + "-";
+            String numberPart2 = phoneNumber.substring(6, 9);
+            return areaCode + numberPart1 + numberPart2;
+        }
     }
 
     // Given a phone number as a string, removes all non-digit characters and appends country code
     // This function is called before passing phone numbers to the back-end
     public static String sanitizePhoneNumber(String phoneNumber) {
-        String phoneNumberSanitized = phoneNumber.replaceAll("[^0-9]", "");
-        // Assume everyone is American, because we're durdles
-        if (phoneNumberSanitized.length() == 10) {
-            phoneNumberSanitized = "1" + phoneNumberSanitized;
-        }
-        return phoneNumberSanitized;
+        return phoneNumber.replaceAll("[^0-9]", "");
     }
 
     // Gets data to be used in ContactsAC adapters in emergency cases
@@ -101,7 +104,7 @@ public class ContactsUtils {
                                     break;
                             }
                         }
-                        if (finalPhoneNumber.length() == 11) {
+                        if (finalPhoneNumber.length() == 10 || finalPhoneNumber.length() == 11) {
                             phoneFriendsMappings.put(finalPhoneNumber, name);
                         }
                         phoneNumbersCursor.close();
