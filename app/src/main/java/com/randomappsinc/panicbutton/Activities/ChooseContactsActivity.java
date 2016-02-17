@@ -36,6 +36,7 @@ public class ChooseContactsActivity extends SlidingActivity {
     public static final int READ_CONTACTS_REQUEST = 1;
     public static final int SEND_SMS_REQUEST = 2;
 
+    @Bind(R.id.parent) View parent;
     @Bind(R.id.loading_contacts) View loadingContacts;
     @Bind(R.id.content) View content;
     @Bind(R.id.friends_list) ListView contactsList;
@@ -118,6 +119,13 @@ public class ChooseContactsActivity extends SlidingActivity {
     @OnClick(R.id.clear_input)
     public void clearSearch() {
         searchInput.setText("");
+    }
+
+    @OnClick(R.id.submit)
+    public void chooseContacts() {
+        if (contactsAdapter.getChosenPhoneNumbers().isEmpty()) {
+            UIUtils.showSnackbar(parent, getString(R.string.need_a_contact));
+        }
     }
 
     @Override

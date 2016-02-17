@@ -1,68 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical">
-
-    <FrameLayout
-        android:id="@+id/loading_contacts"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.rey.material.widget.ProgressView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            app:pv_autostart="true"
-            app:pv_circular="true"
-            app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
-            app:pv_progressMode="indeterminate"/>
-    </FrameLayout>
+    android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/content"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <FrameLayout
+            android:id="@+id/loading_contacts"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/friend_input"
-                android:background="@drawable/text_input_border"
-                android:paddingRight="35dp"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:paddingLeft="10dp"
-                android:textSize="18dp"
-                android:textColor="@color/dark_gray"
-                android:imeOptions="actionDone"
-                android:inputType="textPersonName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/search"
-                android:singleLine="true"/>
-
-            <com.joanzapata.iconify.widget.IconTextView
-                android:id="@+id/clear_input"
-                android:layout_gravity="center_vertical|end"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:gravity="center"
-                android:text="@string/clear_icon"
-                android:textSize="22dp"
-                android:textColor="@color/app_red"/>
+            <com.rey.material.widget.ProgressView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                app:pv_autostart="true"
+                app:pv_circular="true"
+                app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
+                app:pv_progressMode="indeterminate"/>
         </FrameLayout>
 
-        <ListView
-            android:id="@+id/friends_list"
-            android:layout_marginTop="5dp"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <com.rey.material.widget.Button
+                android:id="@+id/submit"
+                android:layout_alignParentBottom="true"
+                android:text="@string/submit"
+                style="@style/ripple_button_style"
+                app:rd_style="@style/button_ripple_attributes"/>
+
+            <LinearLayout
+                android:id="@+id/content"
+                android:layout_above="@+id/submit"
+                android:padding="10dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/friend_input"
+                        android:background="@drawable/text_input_border"
+                        android:paddingRight="35dp"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="10dp"
+                        android:textSize="18dp"
+                        android:textColor="@color/dark_gray"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPersonName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/search"
+                        android:singleLine="true"/>
+
+                    <com.joanzapata.iconify.widget.IconTextView
+                        android:id="@+id/clear_input"
+                        android:layout_gravity="center_vertical|end"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:text="@string/clear_icon"
+                        android:textSize="22dp"
+                        android:textColor="@color/app_red"/>
+                </FrameLayout>
+
+                <ListView
+                    android:id="@+id/friends_list"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

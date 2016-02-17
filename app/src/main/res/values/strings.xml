@@ -21,4 +21,6 @@
         In order for this app to work,
         you need to allow us to send SMS messages on your behalf.
     </string>
+    <string name="submit">Submit</string>
+    <string name="need_a_contact">In order for this app to work, you must choose at least one emergency contact.</string>
 </resources>
