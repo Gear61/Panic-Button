@@ -2,17 +2,27 @@ package com.randomappsinc.panicbutton.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.randomappsinc.panicbutton.R;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.randomappsinc.panicbutton.Utils.UIUtils;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class MainActivity extends SlidingActivity {
     private static final int SEND_SMS_REQUEST = 1;
     private static final int ACCESS_LOCATION_REQUEST = 2;
+
+    @Bind(R.id.panic_button) FloatingActionButton panicButton;
+    @Bind(R.id.panic_instructions) TextView instructions;
 
     private boolean firstTime;
 
@@ -26,6 +36,11 @@ public class MainActivity extends SlidingActivity {
         }
 
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        IconDrawable exclamationIcon = new IconDrawable(this, FontAwesomeIcons.fa_exclamation)
+                .colorRes(R.color.white);
+        panicButton.setImageDrawable(exclamationIcon);
     }
 
     @Override
@@ -34,6 +49,11 @@ public class MainActivity extends SlidingActivity {
         if (firstTime && !PreferencesManager.get().getEmergencyContacts().isEmpty()) {
 
         }
+    }
+
+    @OnClick(R.id.panic_button)
+    public void panic() {
+
     }
 
     @Override
