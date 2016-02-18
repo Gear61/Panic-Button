@@ -4,6 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/choose_emergency_contacts"
+        android:title="@string/choose_emergency_contacts"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/customize_help_message"
+        android:title="@string/customize_help_message"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/settings"
         android:title="@string/settings"
         app:showAsAction="ifRoom"/>

@@ -38,6 +38,6 @@ public class PreferencesManager {
 
     public void setEmergencyContacts(Set<String> emergencyContacts) {
         prefs.edit().remove(EMERGENCY_CONTACTS_KEY).apply();
-        prefs.edit().putStringSet(EMERGENCY_CONTACTS_KEY, emergencyContacts);
+        prefs.edit().putStringSet(EMERGENCY_CONTACTS_KEY, emergencyContacts).apply();
     }
 }

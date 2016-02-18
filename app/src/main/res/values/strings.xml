@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Panic Button</string>
+
+    <!-- Main menu -->
+    <string name="choose_emergency_contacts">Choose emergency contacts</string>
+    <string name="customize_help_message">Customize help message</string>
     <string name="settings">Settings</string>
 
     <string name="choose_contacts">Choose Contacts</string>

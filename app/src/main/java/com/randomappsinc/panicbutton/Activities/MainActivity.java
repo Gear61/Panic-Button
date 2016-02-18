@@ -25,6 +25,8 @@ public class MainActivity extends SlidingActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
+        UIUtils.loadMenuIcon(menu, R.id.choose_emergency_contacts, FontAwesomeIcons.fa_users, this);
+        UIUtils.loadMenuIcon(menu, R.id.customize_help_message, FontAwesomeIcons.fa_exclamation_circle, this);
         UIUtils.loadMenuIcon(menu, R.id.settings, FontAwesomeIcons.fa_gear, this);
         return true;
     }
@@ -32,6 +34,11 @@ public class MainActivity extends SlidingActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.choose_emergency_contacts:
+                startActivity(new Intent(this, ChooseContactsActivity.class));
+                return true;
+            case R.id.customize_help_message:
+                return true;
             case R.id.settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;

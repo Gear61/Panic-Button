@@ -10,9 +10,9 @@ import android.widget.TextView;
 import com.randomappsinc.panicbutton.Contact;
 import com.randomappsinc.panicbutton.R;
 import com.randomappsinc.panicbutton.Utils.Contacts.ContactServer;
+import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.rey.material.widget.CheckBox;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -32,7 +32,7 @@ public class ContactsAdapter extends BaseAdapter {
     public ContactsAdapter(Context context) {
         this.context = context;
         this.contacts = ContactServer.getInstance().getMatches("");
-        this.chosenPhoneNumbers = new HashSet<>();
+        this.chosenPhoneNumbers = PreferencesManager.get().getEmergencyContacts();
     }
 
     public void updateWithPrefix(String prefix) {

@@ -24,6 +24,8 @@ import com.randomappsinc.panicbutton.Utils.Contacts.ContactServer;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.randomappsinc.panicbutton.Utils.UIUtils;
 
+import java.util.Set;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -55,13 +57,7 @@ public class ChooseContactsActivity extends SlidingActivity {
             showInstructions(true);
         }
         else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermission(Manifest.permission.READ_CONTACTS, READ_CONTACTS_REQUEST);
-            }
-            else {
-                setUpContactsList();
-            }
+            setUpContactsList();
         }
     }
 
@@ -70,6 +66,16 @@ public class ChooseContactsActivity extends SlidingActivity {
     }
 
     public void setUpContactsList() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermission(Manifest.permission.READ_CONTACTS, READ_CONTACTS_REQUEST);
+        }
+        else {
+            fetchContactsList();
+        }
+    }
+
+    public void fetchContactsList() {
         new FriendsListInitializer().execute();
     }
 
@@ -123,10 +129,18 @@ public class ChooseContactsActivity extends SlidingActivity {
 
     @OnClick(R.id.submit)
     public void chooseContacts() {
-        if (contactsAdapter.getChosenPhoneNumbers().isEmpty()) {
+        Set<String> chosenContacts = contactsAdapter.getChosenPhoneNumbers();
+        if (chosenContacts.isEmpty()) {
             UIUtils.showSnackbar(parent, getString(R.string.need_a_contact));
         }
+        else {
+            PreferencesManager.get().setEmergencyContacts(chosenContacts);
+            finish();
+        }
     }
+
+    @Override
+    public void onBackPressed() {}
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
