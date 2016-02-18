@@ -3,6 +3,8 @@ package com.randomappsinc.panicbutton.Utils;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.randomappsinc.panicbutton.R;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,6 +13,7 @@ import java.util.Set;
  */
 public class PreferencesManager {
     private static final String EMERGENCY_CONTACTS_KEY = "emergencyContacts";
+    private static final String HELP_MESSAGE_KEY = "helpMessage";
     private static PreferencesManager instance;
     private SharedPreferences prefs;
 
@@ -39,5 +42,13 @@ public class PreferencesManager {
     public void setEmergencyContacts(Set<String> emergencyContacts) {
         prefs.edit().remove(EMERGENCY_CONTACTS_KEY).apply();
         prefs.edit().putStringSet(EMERGENCY_CONTACTS_KEY, emergencyContacts).apply();
+    }
+
+    public String getHelpMessage() {
+        return prefs.getString(HELP_MESSAGE_KEY, MyApplication.getAppContext().getString(R.string.default_help_message));
+    }
+
+    public void setHelpMessage(String helpMessage) {
+        prefs.edit().putString(HELP_MESSAGE_KEY, helpMessage).apply();
     }
 }

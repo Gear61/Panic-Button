@@ -11,15 +11,29 @@ import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.randomappsinc.panicbutton.Utils.UIUtils;
 
 public class MainActivity extends SlidingActivity {
+    private static final int SEND_SMS_REQUEST = 1;
+    private static final int ACCESS_LOCATION_REQUEST = 2;
+
+    private boolean firstTime;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (PreferencesManager.get().getEmergencyContacts().isEmpty()) {
+            firstTime = true;
             startActivity(new Intent(this, ChooseContactsActivity.class));
         }
 
         setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (firstTime && !PreferencesManager.get().getEmergencyContacts().isEmpty()) {
+
+        }
     }
 
     @Override

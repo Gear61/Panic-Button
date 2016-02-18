@@ -35,8 +35,7 @@ import butterknife.OnTextChanged;
  * Created by alexanderchiou on 2/15/16.
  */
 public class ChooseContactsActivity extends SlidingActivity {
-    public static final int READ_CONTACTS_REQUEST = 1;
-    public static final int SEND_SMS_REQUEST = 2;
+    private static final int READ_CONTACTS_REQUEST = 1;
 
     @Bind(R.id.parent) View parent;
     @Bind(R.id.loading_contacts) View loadingContacts;

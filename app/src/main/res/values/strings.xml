@@ -27,4 +27,18 @@
     </string>
     <string name="submit">Submit</string>
     <string name="need_a_contact">In order for this app to work, you must choose at least one emergency contact.</string>
+
+    <string name="default_help_message">I am in danger! Please send help!</string>
+
+    <string name="welcome">Welcome</string>
+    <string name="welcome_message">
+        You have now set up Panic Button.
+        To further customize your Panic Button settings, click the buttons in the toolbar above.
+    </string>
+
+    <string name="help_message">Help message</string>
+    <string name="help_message_hint">
+        This is what is texted to your emergency contacts alongside your location
+        when you activate Panic Button.
+    </string>
 </resources>
