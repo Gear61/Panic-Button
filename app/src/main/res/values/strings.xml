@@ -27,10 +27,15 @@
         You need to allow us to send SMS messages on your behalf,
         so we can automatically alert your emergency contacts when you need help.
     </string>
-    <string name="location_explanation">
+    <string name="location_access_explanation">
         You need to give us access to your location,
         so we can tell your emergency contacts where you are when you need help.
     </string>
+    <string name="location_services_explanation">
+        You need to enable location services, so we can figure out where you are when you need help.
+        Would you like to turn them on now?
+    </string>
+    <string name="enable_location_services">Enable Location Services</string>
 
     <string name="submit">Submit</string>
     <string name="need_a_contact">In order for this app to work, you must choose at least one emergency contact.</string>

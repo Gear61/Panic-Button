@@ -2,9 +2,10 @@ package com.randomappsinc.panicbutton.Activities;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
@@ -56,7 +57,24 @@ public class MainActivity extends SlidingActivity {
                 getPermission(Manifest.permission.SEND_SMS, R.string.send_sms_explanation, SEND_SMS_CODE);
             }
             else if (!PermissionUtils.isPermissionGranted(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                getPermission(Manifest.permission.ACCESS_FINE_LOCATION, R.string.location_explanation, ACCESS_LOCATION_CODE);
+                getPermission(Manifest.permission.ACCESS_FINE_LOCATION, R.string.location_access_explanation, ACCESS_LOCATION_CODE);
+            }
+            else {
+                final Context context = this;
+                if (!PermissionUtils.isLocationEnabled()) {
+                    new MaterialDialog.Builder(this)
+                            .title(R.string.enable_location_services)
+                            .content(R.string.location_services_explanation)
+                            .positiveText(android.R.string.yes)
+                            .negativeText(android.R.string.no)
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    context.startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                }
+                            })
+                            .show();
+                }
             }
         }
     }
