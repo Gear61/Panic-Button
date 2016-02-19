@@ -12,17 +12,20 @@ import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.randomappsinc.panicbutton.R;
+import com.randomappsinc.panicbutton.Utils.MyApplication;
 import com.randomappsinc.panicbutton.Utils.PermissionUtils;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.randomappsinc.panicbutton.Utils.UIUtils;
 
 import butterknife.Bind;
+import butterknife.BindString;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -32,6 +35,7 @@ public class MainActivity extends SlidingActivity {
 
     @Bind(R.id.panic_button) FloatingActionButton panicButton;
     @Bind(R.id.panic_instructions) TextView instructions;
+    @BindString(R.string.help_message_hint) String messageHint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +102,31 @@ public class MainActivity extends SlidingActivity {
         }
     }
 
+    public void customizeHelpMessage() {
+        String currentHelpMessage = PreferencesManager.get().getHelpMessage();
+        new MaterialDialog.Builder(this)
+                .title(R.string.help_message)
+                .input(messageHint, currentHelpMessage, new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                        boolean submitEnabled = !(input.toString().trim().isEmpty());
+                        dialog.getActionButton(DialogAction.POSITIVE).setEnabled(submitEnabled);
+                    }
+                })
+                .alwaysCallInputCallback()
+                .positiveText(R.string.submit)
+                .negativeText(android.R.string.no)
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        String newHelpMessage = dialog.getInputEditText().getText().toString();
+                        PreferencesManager.get().setHelpMessage(newHelpMessage);
+                        Toast.makeText(MyApplication.getAppContext(), R.string.help_message_set, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .show();
+    }
+
     @OnClick(R.id.panic_button)
     public void panic() {
 
@@ -119,6 +148,7 @@ public class MainActivity extends SlidingActivity {
                 startActivity(new Intent(this, ChooseContactsActivity.class));
                 return true;
             case R.id.customize_help_message:
+                customizeHelpMessage();
                 return true;
             case R.id.settings:
                 startActivity(new Intent(this, SettingsActivity.class));

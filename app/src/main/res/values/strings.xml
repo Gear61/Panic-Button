@@ -2,7 +2,8 @@
     <string name="app_name">Panic Button</string>
 
     <!-- Main menu -->
-    <string name="choose_emergency_contacts">Choose emergency contacts</string>
+    <string name="choose_emergency_contacts">Choose emergency contact(s)</string>
+    <string name="emergency_contacts_chosen">Emergency contact(s) successfully set.</string>
     <string name="customize_help_message">Customize help message</string>
     <string name="settings">Settings</string>
 
@@ -21,15 +22,15 @@
     <!-- For show request rationale -->
     <string name="read_contacts_explanation">
         You need to give us access to your phone book,
-        so you can choose emergency contacts.
+        so you can choose your emergency contact(s).
     </string>
     <string name="send_sms_explanation">
         You need to allow us to send SMS messages on your behalf,
-        so we can automatically alert your emergency contacts when you need help.
+        so we can automatically alert your emergency contact(s) when you need help.
     </string>
     <string name="location_access_explanation">
         You need to give us access to your location,
-        so we can tell your emergency contacts where you are when you need help.
+        so we can tell your emergency contact(s) where you are when you need help.
     </string>
     <string name="location_services_explanation">
         You need to enable location services, so we can figure out where you are when you need help.
@@ -48,10 +49,8 @@
         To further customize your Panic Button settings, click the buttons in the toolbar above.
     </string>
 
-    <string name="help_message">Help message</string>
-    <string name="help_message_hint">
-        This is what is texted to your emergency contacts alongside your location
-        when you activate Panic Button.
-    </string>
+    <string name="help_message">Help Message</string>
+    <string name="help_message_hint">This is what Panic Button texts</string>
+    <string name="help_message_set">Help message successfully set.</string>
     <string name="panic_instructions">Hit the big red button to start broadcasting for help.</string>
 </resources>

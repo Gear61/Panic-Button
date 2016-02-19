@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -157,6 +158,7 @@ public class ChooseContactsActivity extends SlidingActivity {
         }
         else {
             PreferencesManager.get().setEmergencyContacts(chosenContacts);
+            Toast.makeText(this, R.string.emergency_contacts_chosen, Toast.LENGTH_LONG).show();
             finish();
         }
     }
