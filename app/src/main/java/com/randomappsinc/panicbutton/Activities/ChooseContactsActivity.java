@@ -1,13 +1,13 @@
 package com.randomappsinc.panicbutton.Activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.Editable;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +21,7 @@ import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.randomappsinc.panicbutton.Adapters.ContactsAdapter;
 import com.randomappsinc.panicbutton.R;
 import com.randomappsinc.panicbutton.Utils.Contacts.ContactServer;
+import com.randomappsinc.panicbutton.Utils.PermissionUtils;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.randomappsinc.panicbutton.Utils.UIUtils;
 
@@ -35,8 +36,6 @@ import butterknife.OnTextChanged;
  * Created by alexanderchiou on 2/15/16.
  */
 public class ChooseContactsActivity extends SlidingActivity {
-    private static final int READ_CONTACTS_REQUEST = 1;
-
     @Bind(R.id.parent) View parent;
     @Bind(R.id.loading_contacts) View loadingContacts;
     @Bind(R.id.content) View content;
@@ -60,14 +59,9 @@ public class ChooseContactsActivity extends SlidingActivity {
         }
     }
 
-    private void requestPermission(String permission, int requestCode) {
-        ActivityCompat.requestPermissions(this, new String[]{permission}, requestCode);
-    }
-
     public void setUpContactsList() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS)
-                != PackageManager.PERMISSION_GRANTED) {
-            requestPermission(Manifest.permission.READ_CONTACTS, READ_CONTACTS_REQUEST);
+        if (!PermissionUtils.isPermissionGranted(Manifest.permission.READ_CONTACTS)) {
+            PermissionUtils.requestPermission(this, Manifest.permission.READ_CONTACTS, 0);
         }
         else {
             fetchContactsList();
@@ -114,6 +108,35 @@ public class ChooseContactsActivity extends SlidingActivity {
                     }
                 })
                 .show();
+    }
+
+    private void getReadContacts() {
+        final Activity activity = this;
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {
+            new MaterialDialog.Builder(this)
+                    .content(R.string.read_contacts_explanation)
+                    .positiveText(android.R.string.yes)
+                    .onPositive(new MaterialDialog.SingleButtonCallback() {
+                        @Override
+                        public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                            PermissionUtils.requestPermission(activity, Manifest.permission.READ_CONTACTS, 0);
+                        }
+                    })
+                    .show();
+        }
+        else {
+            PermissionUtils.requestPermission(activity, Manifest.permission.READ_CONTACTS, 0);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+        if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            fetchContactsList();
+        }
+        else {
+            getReadContacts();
+        }
     }
 
     @OnTextChanged(value = R.id.friend_input, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
