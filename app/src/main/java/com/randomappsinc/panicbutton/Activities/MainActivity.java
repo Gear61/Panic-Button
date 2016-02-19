@@ -19,6 +19,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.randomappsinc.panicbutton.R;
+import com.randomappsinc.panicbutton.Utils.LocationUtils;
 import com.randomappsinc.panicbutton.Utils.MyApplication;
 import com.randomappsinc.panicbutton.Utils.PermissionUtils;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;

@@ -113,4 +113,8 @@ public class ContactsUtils {
         }
         return phoneFriendsMappings;
     }
+
+    public static void sendHelpMessages() {
+
+    }
 }
