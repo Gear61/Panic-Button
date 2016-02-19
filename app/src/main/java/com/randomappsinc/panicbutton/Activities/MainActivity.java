@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -19,7 +20,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.joanzapata.iconify.IconDrawable;
 import com.joanzapata.iconify.fonts.FontAwesomeIcons;
 import com.randomappsinc.panicbutton.R;
-import com.randomappsinc.panicbutton.Utils.LocationUtils;
+import com.randomappsinc.panicbutton.Utils.Contacts.ContactsUtils;
 import com.randomappsinc.panicbutton.Utils.MyApplication;
 import com.randomappsinc.panicbutton.Utils.PermissionUtils;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;
@@ -130,14 +131,25 @@ public class MainActivity extends SlidingActivity {
                 .show();
     }
 
+    private Handler timerHandler = new Handler();
+    private Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            ContactsUtils.sendHelpMessages();
+            timerHandler.postDelayed(this, 60000);
+        }
+    };
+
     @OnClick(R.id.panic_button)
     public void panic() {
         panicking = !panicking;
         if (panicking) {
             instructions.setText(R.string.panicking);
             instructions.startAnimation(UIUtils.getFlashingAnimation());
+            timerHandler.postDelayed(timerRunnable, 0);
         }
         else {
+            timerHandler.removeCallbacks(timerRunnable);
             instructions.setText(R.string.panic_instructions);
             instructions.clearAnimation();
         }

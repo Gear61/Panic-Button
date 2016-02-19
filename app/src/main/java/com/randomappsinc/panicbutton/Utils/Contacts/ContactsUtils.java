@@ -3,12 +3,20 @@ package com.randomappsinc.panicbutton.Utils.Contacts;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.telephony.SmsManager;
+import android.widget.Toast;
+
+import com.randomappsinc.panicbutton.R;
+import com.randomappsinc.panicbutton.Utils.LocationUtils;
+import com.randomappsinc.panicbutton.Utils.MyApplication;
+import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by alexanderchiou on 2/15/16.
@@ -115,6 +123,17 @@ public class ContactsUtils {
     }
 
     public static void sendHelpMessages() {
+        StringBuilder helpMessage = new StringBuilder(PreferencesManager.get().getHelpMessage());
+        String address = LocationUtils.getCurrentAddress();
+        if (!address.isEmpty()) {
+            helpMessage.append("\n\n");
+            helpMessage.append(address);
+        }
 
+        Set<String> emergencyContacts = PreferencesManager.get().getEmergencyContacts();
+        for (String contactNumber : emergencyContacts) {
+            SmsManager.getDefault().sendTextMessage(contactNumber, null, helpMessage.toString(), null, null);
+        }
+        Toast.makeText(MyApplication.getAppContext(), R.string.texting_round_confirmation, Toast.LENGTH_LONG).show();
     }
 }
