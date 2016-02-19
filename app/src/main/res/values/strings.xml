@@ -53,4 +53,5 @@
     <string name="help_message_hint">This is what Panic Button texts</string>
     <string name="help_message_set">Help message successfully set.</string>
     <string name="panic_instructions">Hit the big red button to start broadcasting for help.</string>
+    <string name="panicking">YOU ARE NOW BROADCASTING FOR HELP!!!</string>
 </resources>

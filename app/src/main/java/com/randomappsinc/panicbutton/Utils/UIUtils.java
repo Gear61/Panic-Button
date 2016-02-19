@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.support.design.widget.Snackbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.joanzapata.iconify.IconDrawable;
@@ -30,5 +32,14 @@ public class UIUtils {
                 new IconDrawable(context, icon)
                         .colorRes(R.color.white)
                         .actionBarSize());
+    }
+
+    public static Animation getFlashingAnimation() {
+        Animation animation = new AlphaAnimation(0.0f, 1.0f);
+        animation.setDuration(250);
+        animation.setStartOffset(20);
+        animation.setRepeatMode(Animation.REVERSE);
+        animation.setRepeatCount(Animation.INFINITE);
+        return animation;
     }
 }

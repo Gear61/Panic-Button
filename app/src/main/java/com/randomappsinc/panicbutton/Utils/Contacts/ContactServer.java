@@ -1,6 +1,5 @@
 package com.randomappsinc.panicbutton.Utils.Contacts;
 
-import com.randomappsinc.panicbutton.Contact;
 import com.randomappsinc.panicbutton.Utils.MyApplication;
 
 import java.util.ArrayList;

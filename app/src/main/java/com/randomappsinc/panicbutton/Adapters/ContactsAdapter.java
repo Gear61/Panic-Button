@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.randomappsinc.panicbutton.Contact;
 import com.randomappsinc.panicbutton.R;
+import com.randomappsinc.panicbutton.Utils.Contacts.Contact;
 import com.randomappsinc.panicbutton.Utils.Contacts.ContactServer;
 import com.randomappsinc.panicbutton.Utils.PreferencesManager;
 import com.rey.material.widget.CheckBox;

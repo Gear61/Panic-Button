@@ -37,6 +37,8 @@ public class MainActivity extends SlidingActivity {
     @Bind(R.id.panic_instructions) TextView instructions;
     @BindString(R.string.help_message_hint) String messageHint;
 
+    private boolean panicking;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +131,15 @@ public class MainActivity extends SlidingActivity {
 
     @OnClick(R.id.panic_button)
     public void panic() {
-
+        panicking = !panicking;
+        if (panicking) {
+            instructions.setText(R.string.panicking);
+            instructions.startAnimation(UIUtils.getFlashingAnimation());
+        }
+        else {
+            instructions.setText(R.string.panic_instructions);
+            instructions.clearAnimation();
+        }
     }
 
     @Override

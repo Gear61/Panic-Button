@@ -4,8 +4,6 @@ import android.content.ContentResolver;
 import android.database.Cursor;
 import android.provider.ContactsContract;
 
-import com.randomappsinc.panicbutton.Contact;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
