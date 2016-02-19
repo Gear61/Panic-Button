@@ -17,14 +17,21 @@
         When you activate the panic button, the app will text these contacts with a help message and your current location.
         You can review these instructions at any time by clicking the info icon in the toolbar above.
     </string>
+
+    <!-- For show request rationale -->
     <string name="read_contacts_explanation">
         You need to give us access to your phone book,
         so you can choose emergency contacts.
     </string>
     <string name="send_sms_explanation">
-        In order for this app to work,
-        you need to allow us to send SMS messages on your behalf.
+        You need to allow us to send SMS messages on your behalf,
+        so we can automatically alert your emergency contacts when you need help.
     </string>
+    <string name="location_explanation">
+        You need to give us access to your location,
+        so we can tell your emergency contacts where you are when you need help.
+    </string>
+
     <string name="submit">Submit</string>
     <string name="need_a_contact">In order for this app to work, you must choose at least one emergency contact.</string>
 
